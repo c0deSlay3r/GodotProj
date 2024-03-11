@@ -5,6 +5,7 @@ var screen_size: Vector2
 var velocity = Vector2.ZERO
 
 
+
 func clamp_player(delta):
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size) 
@@ -44,10 +45,11 @@ func check_input(delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-
+	hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	check_input(delta)
 
 	choose_animation()
