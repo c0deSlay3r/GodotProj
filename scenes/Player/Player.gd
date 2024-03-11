@@ -10,7 +10,7 @@ func clamp_player(delta):
 	position = position.clamp(Vector2.ZERO, screen_size) 
 
 
-func check_input():
+func check_input(delta):
 	var l_velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		l_velocity.x += 1
@@ -26,6 +26,7 @@ func check_input():
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
+	clamp_player(delta)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +36,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	check_input()
-	clamp_player(delta)
+	check_input(delta)
 
