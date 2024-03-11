@@ -9,6 +9,16 @@ func clamp_player(delta):
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size) 
 
+func choose_animation():
+	if velocity.x != 0:
+		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.flip_v = false
+
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+	elif velocity.y != 0:
+		$AnimatedSprite2D.animation = "up"
+		$AnimatedSprite2D.flip_v = velocity.y > 0
+
 
 func check_input(delta):
 	var l_velocity = Vector2.ZERO
@@ -26,6 +36,7 @@ func check_input(delta):
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
+	
 	clamp_player(delta)
 
 
@@ -37,4 +48,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	check_input(delta)
+
+	choose_animation()
 
