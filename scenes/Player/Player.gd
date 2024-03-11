@@ -21,18 +21,19 @@ func choose_animation():
 
 
 func check_input(delta):
-	var l_velocity = Vector2.ZERO
-	if Input.is_action_pressed("move_right"):
-		l_velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		l_velocity.x -= 1
-	if Input.is_action_pressed("move_back"):
-		l_velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		l_velocity.y -= 1
+	velocity = Vector2.ZERO
 
-	if l_velocity.length() > 0:
-		velocity = l_velocity.normalized() * speed
+	if Input.is_action_pressed("move_right"):
+		velocity.x += 1
+	if Input.is_action_pressed("move_left"):
+		velocity.x -= 1
+	if Input.is_action_pressed("move_back"):
+		velocity.y += 1
+	if Input.is_action_pressed("move_up"):
+		velocity.y -= 1
+
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
